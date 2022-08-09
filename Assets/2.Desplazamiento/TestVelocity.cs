@@ -5,34 +5,38 @@ using UnityEngine;
 public class TestVelocity : MonoBehaviour
 {
     [SerializeField]private MyVector position;
-    [SerializeField] private MyVector displacement;
+    [SerializeField] private MyVector velocity;
+    private MyVector _displacement;
     void Start()
     {
         position = transform.position;
+        // Time.maximumDeltaTime = 1f / 60f;
     }
     void Update()
     {
         //Debug vector
         position.Draw(Color.green);
-        displacement.Draw(position, Color.yellow);
+        _displacement.Draw(position, Color.yellow);
         //position.Draw(Color.red);
+        Move();
     }
 
     public void Move()
     {
-        position += displacement;
+        _displacement = velocity * (1f / 60f); 
+        position += _displacement;
 //Check Bounds
 
         if (Mathf.Abs(position.x) > 5)
         {
             position.x = Mathf.Sign(position.x) * 5;
-            displacement.x = -displacement.x;
+            velocity.x = -velocity.x;
         }
         
         if (Mathf.Abs(position.y) > 5)
         {
             position.y = Mathf.Sign(position.y) * 5;
-            displacement.y = -displacement.y;
+            velocity.y = -velocity.y;
         }
 
         transform.position = position;
