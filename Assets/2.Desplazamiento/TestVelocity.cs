@@ -23,7 +23,7 @@ public class TestVelocity : MonoBehaviour
 
     public void Move()
     {
-        _displacement = velocity * (1f / 60f); 
+        _displacement = velocity * Time.deltaTime; 
         position += _displacement;
 //Check Bounds
 
