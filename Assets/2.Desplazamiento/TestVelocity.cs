@@ -4,28 +4,44 @@ using UnityEngine;
 
 public class TestVelocity : MonoBehaviour
 {
-    [SerializeField]private MyVector position;
-    [SerializeField] private MyVector velocity;
-    private MyVector _displacement;
+    private MyVector position;
+    private MyVector velocity;
+    private MyVector displacement;
+    [SerializeField] MyVector acceleration;
     void Start()
     {
         position = transform.position;
-        // Time.maximumDeltaTime = 1f / 60f;
+        //Time.maximumDeltaTime = 1f / 60f;
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
     }
     void Update()
     {
-        //Debug vector
+        // Debug vector
         position.Draw(Color.green);
-        _displacement.Draw(position, Color.yellow);
+        displacement.Draw(position, Color.yellow);
+        velocity.Draw(position, Color.red);
         //position.Draw(Color.red);
-        Move();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Hacer que cuando se presione el espacio cambiar la direccion
+        }
+
     }
 
     public void Move()
     {
-        _displacement = velocity * Time.deltaTime; 
-        position += _displacement;
-//Check Bounds
+        // Calcule displacemente position
+        // Integrate by Euler vector
+        velocity = velocity + acceleration * Time.fixedDeltaTime;
+        displacement = velocity * Time.fixedDeltaTime;
+        position += displacement; 
+
+        // Check Bounds
 
         if (Mathf.Abs(position.x) > 5)
         {
@@ -39,6 +55,7 @@ public class TestVelocity : MonoBehaviour
             velocity.y = -velocity.y;
         }
 
+        // Update unity object
         transform.position = position;
     }
 }
