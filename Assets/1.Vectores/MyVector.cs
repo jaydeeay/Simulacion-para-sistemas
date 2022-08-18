@@ -67,6 +67,14 @@ public struct MyVector
         );
     }
 
+    public static MyVector operator /(MyVector a, float b)
+    {
+        return new MyVector(
+            a.x / b,
+            a.y / b
+        );
+    }
+
     public static MyVector Lerp(MyVector a, MyVector b, float c)
     {
         return new MyVector(
