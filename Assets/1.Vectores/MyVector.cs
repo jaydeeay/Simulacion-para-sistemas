@@ -6,7 +6,20 @@ public struct MyVector
 {
     public float x;
     public float y;
+    public float magnitude => Mathf.Sqrt(x * x + y * y);
 
+    public MyVector normalized
+    {
+        get
+        {
+            float distance = magnitude;
+            if (distance < 0.0001f)
+            {
+                return new MyVector(0, 0);
+            }
+            return new MyVector(x / distance, y / distance);
+        }
+    }
     public MyVector(float x, float y)
     {
         this.x = x;
@@ -31,6 +44,21 @@ public struct MyVector
             a.x + b.x,
             a.y + b.y
         );
+    }
+    
+    public void Normalize()
+    {
+        float magnitudeCache = magnitude;
+        if (magnitudeCache < 0.001)
+        {
+            x = 0;
+            y = 0;
+        }
+        else
+        {
+            x = x / magnitudeCache;
+            y = y / magnitudeCache;
+        }
     }
     
     public static implicit operator Vector3(MyVector a)
