@@ -18,15 +18,14 @@ public class Tween : MonoBehaviour
     
     private void Start()
     {
-        //initialPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        tParameter = currentTime / time; //Normalize tParameter
+        tParameter = currentTime / time; //Normalize
         transform.position = Vector3.LerpUnclamped(initialPosition, targetPosition, curve.Evaluate(tParameter));
-        spriteRenderer.color = Color.LerpUnclamped(initialColor, targetColor, curve.Evaluate(tParameter));
+        //spriteRenderer.color = Color.LerpUnclamped(initialColor, targetColor, curve.Evaluate(tParameter));
         currentTime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
