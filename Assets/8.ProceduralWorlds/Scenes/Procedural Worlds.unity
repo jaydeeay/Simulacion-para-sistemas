@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19723180a7601024d8cd647bee4f9292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  branchPrefab: {fileID: 1435731406625807922, guid: 73f38df5d4fe9ec4192d2355acd34cdf, type: 3}
+  branchPrefab: {fileID: 5801013210451169825, guid: ddc949f0d4f7ba547b2fc77e3c2cdeac, type: 3}
   totalNodes: 6
 --- !u!4 &1392782570
 Transform:
